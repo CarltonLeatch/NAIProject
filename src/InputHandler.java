@@ -40,7 +40,7 @@ public class InputHandler {
                         graph.setTargetPosition(new Point(i,j));
                     }
                     else{
-                        throw new InvalidLetterException("There was a wrong character in the text file.The character must be X, ,T or G.");
+                        throw new InvalidLetterException("There was a wrong character in the text file.The character must be X,' ',T or G.");
                     }
                 }
             }

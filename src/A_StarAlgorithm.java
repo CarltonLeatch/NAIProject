@@ -7,7 +7,7 @@ public class A_StarAlgorithm {
 
     public static void main(String[] args) throws InvalidLetterException, FileNotFoundException, IOException, HeapException {
 
-        String name = "input_files/small.txt";
+        String name = "input_files/test2.txt";
         if (name.length() >= 999) {
             System.out.println("Usage: java A_StarAlgorithm " + name);
         } else {
@@ -23,7 +23,7 @@ public class A_StarAlgorithm {
             } else {
 
                 graph.printPath(path);
-                System.out.println("The total number of moves from distance to the target are : " + path.size());
+                System.out.println("The total number of moves from start to the target are : " + path.size());
             }
         }
     }

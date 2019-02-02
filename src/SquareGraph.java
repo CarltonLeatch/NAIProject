@@ -24,6 +24,10 @@ public class SquareGraph {
         return Math.pow(Math.pow(from.getX() - to.getX(), 2) + Math.pow(from.getY() - to.getY(), 2), 0.5);
     }
 
+    static double calculateDistance2(Point from, Point to){
+        return Math.pow(from.getX() - to.getX(), 2) + Math.pow(from.getY() - to.getY(),2);
+    }
+
     public Node getMapCell(Point coord) {
         return map[(int) coord.getX()][(int) coord.getY()];
     }
@@ -119,6 +123,12 @@ public class SquareGraph {
                 }
                 System.out.print("\n");
             }
+            System.out.println("\n\n\n\n");
+//            try {
+//               Thread.sleep(500);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 
@@ -129,7 +139,7 @@ public class SquareGraph {
         System.out.println("Start point : [" + start.getX() + "," + start.getY() + "]");
         System.out.println("End point : [" + target.getX() + "," + target.getY() + "]");
         start.setCostFromStart(0);
-        start.setTotalCost(start.getCostFromStart() + calculateDistance(start.getPosition(), target.getPosition()));
+        start.setTotalCost(start.getCostFromStart() + calculateDistance2(start.getPosition(), target.getPosition()));
         while (!openNodes.isEmpty()) {
             Node current = popBestOpenNode();
             if (current.equals(target)) {
@@ -140,12 +150,12 @@ public class SquareGraph {
             Set<Node> neighbours = getNeighbours(current);
             for (Node neighbour : neighbours) {
                 if (!neighbour.isClosed()) {
-                    double tentativeCost = current.getCostFromStart() + calculateDistance(current.getPosition(), neighbour.getPosition());
+                    double tentativeCost = current.getCostFromStart() + calculateDistance2(current.getPosition(), neighbour.getPosition());
 
                     if ((!neighbour.isOpen()) || (tentativeCost < neighbour.getCostFromStart())) {
                         neighbour.setParent(current);
                         neighbour.setCostFromStart(tentativeCost);
-                        neighbour.setTotalCost(neighbour.getCostFromStart() + calculateDistance(neighbour.getPosition(), start.getPosition()));
+                        neighbour.setTotalCost(neighbour.getCostFromStart() + calculateDistance2(neighbour.getPosition(), start.getPosition()));
                         if (!neighbour.isOpen()) {
                             addToOpenNodes(neighbour);
                         }
